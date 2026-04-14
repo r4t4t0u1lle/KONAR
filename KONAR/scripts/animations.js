@@ -50,7 +50,7 @@ cardBg.forEach(element =>{
     var slideTime = 6000; // 6 sekund
     var images = [];
     var i = 0;
-    
+
     images[0] = '../KONAR/images/' + elementId + '/1.jpg';
     images[1] = '../KONAR/images/' + elementId + '/2.jpg';
     images[2] = '../KONAR/images/' + elementId + '/3.jpg';
@@ -109,17 +109,30 @@ document.getElementById("form_btn").addEventListener("mouseleave", () =>{
             ------------
 */
 
+
+
 function screenRes(){
-    a = document.getElementById("o_nas").style.height = `${screen.height}px`;
-    console.log(a)
+    document.getElementById("o_nas").style.height = `${screen.height}px`;
 }
 
 function screenBack(){
-    b = document.getElementById("o_nas").style.height = '100dvh';
-    console.log(b)
+    document.getElementById("o_nas").style.height = '100vh';
 }
 
-if(screen.width <= 500){
-window.addEventListener('onload', screenRes());
-window.addEventListener('resize', screenBack());
-}
+window.addEventListener('onload', () =>{
+    if(screen.height > $(document).width()){
+        screenRes();
+    }
+    else{
+        screenBack();
+    }
+});
+
+window.addEventListener('resize', () =>{
+    if(screen.height > $(document).width()){
+        screenRes();
+    }
+    else{
+        screenBack();
+    }
+})
